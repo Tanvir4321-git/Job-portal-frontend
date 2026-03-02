@@ -1,0 +1,64 @@
+import React, { useState } from 'react';
+import logo from '../../assets/Logo.png'
+
+const HamburgerIcon = () => (
+    <svg width="20" height="20" viewBox="0 0 17 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M9.16667 8.33333H0.833333C0.61232 8.33333 0.400358 8.42113 0.244078 8.57741C0.0877973 8.73369 0 8.94565 0 9.16667C0 9.38768 0.0877973 9.59964 0.244078 9.75592C0.400358 9.9122 0.61232 10 0.833333 10H9.16667C9.38768 10 9.59964 9.9122 9.75592 9.75592C9.9122 9.59964 10 9.38768 10 9.16667C10 8.94565 9.9122 8.73369 9.75592 8.57741C9.59964 8.42113 9.38768 8.33333 9.16667 8.33333ZM0.833333 1.66667H15.8333C16.0543 1.66667 16.2663 1.57887 16.4226 1.42259C16.5789 1.26631 16.6667 1.05435 16.6667 0.833333C16.6667 0.61232 16.5789 0.400358 16.4226 0.244078C16.2663 0.0877975 16.0543 0 15.8333 0H0.833333C0.61232 0 0.400358 0.0877975 0.244078 0.244078C0.0877973 0.400358 0 0.61232 0 0.833333C0 1.05435 0.0877973 1.26631 0.244078 1.42259C0.400358 1.57887 0.61232 1.66667 0.833333 1.66667ZM15.8333 4.16667H0.833333C0.61232 4.16667 0.400358 4.25446 0.244078 4.41074C0.0877973 4.56702 0 4.77899 0 5C0 5.22101 0.0877973 5.43297 0.244078 5.58926C0.400358 5.74554 0.61232 5.83333 0.833333 5.83333H15.8333C16.0543 5.83333 16.2663 5.74554 16.4226 5.58926C16.5789 5.43297 16.6667 5.22101 16.6667 5C16.6667 4.77899 16.5789 4.56702 16.4226 4.41074C16.2663 4.25446 16.0543 4.16667 15.8333 4.16667Z" fill="#25324B" />
+    </svg>
+);
+
+const Navbar = () => {
+    const [menuOpen, setMenuOpen] = useState(false);
+
+    return (
+        <div className='bg-[#f8f8fd]'>
+            <div className='max-w-360 mx-auto px-31  flex justify-between items-center'>
+
+                {/* Left Side */}
+                <div className='py-5 gap-12 flex items-center'>
+                    {/* Logo */}
+                    <div className='flex items-center gap-1'>
+                        <img src={logo} alt="logo" className='w-10 h-9' />
+                        <h1 style={{ fontFamily: "'Clash Display', sans-serif" }} className='text-[#25324B] font-bold text-2xl leading-9'>QuickHire</h1>
+                    </div>
+
+                    {/* Nav Links  */}
+                    <div className='hidden md:flex gap-6'>
+                        <p className='font-medium text-[16px] text-[#515B6F] cursor-pointer hover:text-[#4640DE] transition-colors'>Find Jobs</p>
+                        <p className='font-medium text-[16px] text-[#515B6F] cursor-pointer hover:text-[#4640DE] transition-colors'>Browse Companies</p>
+                    </div>
+                </div>
+
+                {/* Right Side -  */}
+                <div className='hidden md:flex gap-4 items-center font-Epilogue'>
+                    <p className='text-[#4640DE] py-3 px-6 cursor-pointer font-semibold'>Login</p>
+                    <div className="w-px h-10 bg-[#D6DDEB]"></div>
+                    <p className='text-white bg-[#4640DE] py-3 px-6 rounded-sm cursor-pointer font-semibold hover:bg-[#3730c4] transition-colors'>Sign Up</p>
+                </div>
+
+                {/* Hamburger */}
+                <button
+                    className='md:hidden p-2 bg-white rounded-full border border-[#D6DDEB]'
+                    onClick={() => setMenuOpen(!menuOpen)}
+                >
+                    <HamburgerIcon  />
+                </button>
+            </div>
+
+            {/* Mobile Menu */}
+            {menuOpen && (
+                <div className='md:hidden bg-[#f8f8fd] px-6 pb-5 flex flex-col gap-4 border-t border-[#D6DDEB]'>
+                    <p className='font-medium text-[16px] text-[#515B6F] pt-4 cursor-pointer'>Find Jobs</p>
+                    <p className='font-medium text-[16px] text-[#515B6F] cursor-pointer'>Browse Companies</p>
+                    <div className='flex gap-4 items-center pt-2'>
+                        <p className='text-[#4640DE] font-semibold cursor-pointer'>Login</p>
+                        <div className="w-px h-6 bg-[#D6DDEB]"></div>
+                        <p className='text-white bg-[#4640DE] py-2 px-5 rounded-sm cursor-pointer font-semibold'>Sign Up</p>
+                    </div>
+                </div>
+            )}
+        </div>
+    );
+};
+
+export default Navbar;
