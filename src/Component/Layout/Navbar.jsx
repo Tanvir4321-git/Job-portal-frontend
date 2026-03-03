@@ -11,8 +11,8 @@ const Navbar = () => {
     const [menuOpen, setMenuOpen] = useState(false);
 
     return (
-        <div className='bg-[#f8f8fd]'>
-            <div className='max-w-360 mx-auto px-31  flex justify-between items-center'>
+        <nav className='bg-[#f8f8fd]'>
+            <div className='max-w-[1440px] mx-auto px-4 md:px-31 flex justify-between items-center'>
 
                 {/* Left Side */}
                 <div className='py-5 gap-12 flex items-center'>
@@ -57,7 +57,7 @@ const Navbar = () => {
                     </div>
                 </div>
             )}
-        </div>
+        </nav>
     );
 };
 
