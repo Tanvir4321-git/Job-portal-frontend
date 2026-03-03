@@ -44,7 +44,7 @@ const FeaturedJobs = () => {
                 {/* Grid */}
                 <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6'>
                     {jobs.map((job,i) => (
-                          <div key={i} className='border border-[#D6DDEB] bg-white p-6 rounded-sm hover:shadow-md transition-shadow cursor-pointer group'>
+                          <div key={i} className='border border-[#D6DDEB] bg-white p-6 rounded-sm hover:shadow-xl  hover:-translate-y-4 transition-all duration-300 cursor-pointer group'>
         {/* Logo + Badge */}
         <div className='flex items-start justify-between mb-3'>
             <img src={job.image} alt={job.company} className='w-12 h-12 rounded object-contain  p-1' />

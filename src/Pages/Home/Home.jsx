@@ -4,6 +4,7 @@ import CompaniesWeHelped from './CompaniesWeHelped';
 import Category from './Category';
 import StartJobPosting from './StartJobPosting';
 import FeaturedJobs from './FeaturedJobs';
+import LatestJobs from './LatestJobs';
 
 const Home = () => {
     return (
@@ -13,6 +14,7 @@ const Home = () => {
             <Category></Category>
             <StartJobPosting></StartJobPosting>
             <FeaturedJobs></FeaturedJobs>
+            <LatestJobs></LatestJobs>
         </div>
     );
 };
