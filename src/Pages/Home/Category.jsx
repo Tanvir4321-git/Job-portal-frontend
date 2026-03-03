@@ -31,7 +31,7 @@ const Category = () => {
                 <h1 className='font-semibold text-[32px] md:text-5xl title '>Explore by <span className='text-[#26A4FF]'>category</span> </h1>
                 <div className='md:flex items-center hidden'>
 
-                    <p className='text-[16px]  text-[#4640DE]'>Show all jobs</p>
+                    <button className='font-semibold gap-2 hover:gap-3 transition-all  text-[#4640DE]'>Show all jobs</button>
                     <span><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M19.75 11.7261L4.75 11.7261" stroke="#4640DE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                         <path d="M13.7002 5.70149L19.7502 11.7255L13.7002 17.7505" stroke="#4640DE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
@@ -127,6 +127,15 @@ const Category = () => {
                         </div>
                     );
                 })}
+                     <div className='flex items-center md:hidden mt-2'>
+
+                    <p className='text-[16px]  text-[#4640DE]'>Show all jobs</p>
+                    <span><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M19.75 11.7261L4.75 11.7261" stroke="#4640DE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                        <path d="M13.7002 5.70149L19.7502 11.7255L13.7002 17.7505" stroke="#4640DE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                    </span>
+                </div>
             </div>
 
 
