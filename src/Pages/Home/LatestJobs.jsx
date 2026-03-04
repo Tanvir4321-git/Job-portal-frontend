@@ -8,7 +8,7 @@ import logo5 from '../../assets/logo5.png'
 import logo6 from '../../assets/logo6.png'
 import logo7 from '../../assets/logo7.png'
 import logo8 from '../../assets/logo8.png'
-import pattern from '../../assets/Pattern.png'
+
 
 const jobs = [
     { id: 1, logo: logo1, title: 'Social Media Assistant', company: 'Nomad', location: 'Paris, France', tags: ['Full-Time', 'Marketing', 'Design'] },
@@ -30,29 +30,30 @@ const tagColorMap = {
 const LatestJobs = () => {
     return (
         <section className='bg-[#F8F8FD] py-16'>
-            <div className='max-w-360 mx-auto px-31'>
+            <div className='max-w-360 mx-auto px-4 md:px-31'>
 
-                {/* Header */}
-                <div className='flex items-center justify-between mb-10'>
-                    <h2 style={{ fontFamily: "'Clash Display', sans-serif" }} className='text-[#25324B] font-semibold text-4xl'>
-                        Latest <span className='text-[#26A4FF]'>jobs open</span>
-                    </h2>
-                    <button className='flex items-center gap-2 text-[#4640DE] font-semibold hover:gap-3 transition-all'>
-                        Show all jobs <FiArrowRight />
-                    </button>
-                </div>
+               
+                  {/* Header */}
+                                <div className='flex items-center justify-between mb-10'>
+                                    <h1 className='font-semibold text-[32px] md:text-5xl title '> Latest <span className='text-[#26A4FF]'> jobs open</span> </h1>
+                                    
+                                    <button className='md:flex hidden items-center gap-2 text-[#4640DE] font-semibold hover:gap-3 transition-all'>
+                                        Show all jobs <FiArrowRight />
+                                    </button>
+                                </div>
+         
 
                 {/* Grid */}
-                <div style={{ backgroundImage: `url(${pattern})` }} className='grid grid-cols-1 md:grid-cols-2 gap-4  bg-cover bg-left bg-no-repeat '>
+                <div  className='grid grid-cols-1 md:grid-cols-2 gap-4  '>
                     {jobs.map((job) => (
-                        <div  key={job.id} className='flex  items-center gap-4 bg-white border border-[#D6DDEB] px-6 py-5 hover:shadow-md hover:border-[#4640DE] transition-all cursor-pointer group'>
+                        <div  key={job.id} className='flex md:flex-row flex-col  md:items-center gap-4 bg-white border border-[#D6DDEB] px-4 md:px-6 py-5 hover:shadow-md hover:border-[#4640DE] transition-all cursor-pointer group'>
                             
                             {/* Logo */}
                             <img src={job.logo} alt={job.company} className='w-12 h-12 rounded object-contain border border-[#D6DDEB] p-1 shrink-0' />
 
                             {/* Info */}
-                            <div className='flex-1'>
-                                <h3 style={{ fontFamily: "'Clash Display', sans-serif" }} className='text-[#25324B] font-semibold text-base group-hover:text-[#4640DE] transition-colors'>
+                            <div className=''>
+                                <h3  className='text-[#25324B] title font-semibold text-base group-hover:text-[#4640DE] transition-colors'>
                                     {job.title}
                                 </h3>
                                 <p className='text-[#515B6F] text-sm mt-0.5'>
@@ -70,7 +71,9 @@ const LatestJobs = () => {
                         </div>
                     ))}
                 </div>
-
+   <button className='mt-3  flex md:hidden items-center gap-2 text-[#4640DE] font-semibold hover:gap-3 transition-all'>
+                        Show all jobs <FiArrowRight />
+                    </button>
             </div>
         </section>
     );
