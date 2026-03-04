@@ -1,5 +1,7 @@
-import React, { useState } from 'react';
+import React, { use, useState } from 'react';
 import logo from '../../assets/Logo.png'
+import { Link } from 'react-router';
+import { Authcontext } from '../../Context/AuthContext';
 
 const HamburgerIcon = () => (
     <svg width="20" height="20" viewBox="0 0 17 10" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -9,9 +11,10 @@ const HamburgerIcon = () => (
 
 const Navbar = () => {
     const [menuOpen, setMenuOpen] = useState(false);
+    const {user,logOut}=use(Authcontext)
 
     return (
-        <nav className='bg-[#f8f8fd]'>
+        <nav className='bg-[#f8f8fd] relative z-50'>
             <div className='max-w-[1440px] mx-auto px-4 md:px-31 flex justify-between items-center'>
 
                 {/* Left Side */}
@@ -30,11 +33,14 @@ const Navbar = () => {
                 </div>
 
                 {/* Right Side -  */}
-                <div className='hidden md:flex gap-4 items-center font-Epilogue'>
-                    <p className='text-[#4640DE] py-3 px-6 cursor-pointer font-semibold'>Login</p>
+                {
+                    user ?   <button  onClick={()=>logOut()} className='text-white bg-[#4640DE] py-3 px-6 rounded-sm cursor-pointer font-semibold hover:bg-[#3730c4] transition-colors'>Log out</button>:<div className='hidden md:flex gap-4 items-center font-Epilogue'>
+                    <Link to='/login' className='text-[#4640DE] py-3 px-6 cursor-pointer font-semibold'>Login</Link>
                     <div className="w-px h-10 bg-[#D6DDEB]"></div>
-                    <p className='text-white bg-[#4640DE] py-3 px-6 rounded-sm cursor-pointer font-semibold hover:bg-[#3730c4] transition-colors'>Sign Up</p>
+                    <Link to='/signup' className='text-white bg-[#4640DE] py-3 px-6 rounded-sm cursor-pointer font-semibold hover:bg-[#3730c4] transition-colors'>Sign Up</Link>
                 </div>
+                }
+                
 
                 {/* Hamburger */}
                 <button
@@ -50,11 +56,13 @@ const Navbar = () => {
                 <div className='md:hidden bg-[#f8f8fd] px-6 pb-5 flex flex-col gap-4 border-t border-[#D6DDEB]'>
                     <p className='font-medium text-[16px] text-[#515B6F] pt-4 cursor-pointer'>Find Jobs</p>
                     <p className='font-medium text-[16px] text-[#515B6F] cursor-pointer'>Browse Companies</p>
-                    <div className='flex gap-4 items-center pt-2'>
-                        <p className='text-[#4640DE] font-semibold cursor-pointer'>Login</p>
-                        <div className="w-px h-6 bg-[#D6DDEB]"></div>
-                        <p className='text-white bg-[#4640DE] py-2 px-5 rounded-sm cursor-pointer font-semibold'>Sign Up</p>
-                    </div>
+                     {
+                    user ?   <button  onClick={()=>logOut()} className='text-white hidden md:flex bg-[#4640DE] py-3 px-6 rounded-sm cursor-pointer font-semibold hover:bg-[#3730c4] transition-colors'>Log out</button>:<div className='hidden md:flex gap-4 items-center font-Epilogue'>
+                    <Link to='/login' className='text-[#4640DE] py-3 px-6 cursor-pointer font-semibold'>Login</Link>
+                    <div className="w-px h-10 bg-[#D6DDEB]"></div>
+                    <Link to='/signup' className='text-white bg-[#4640DE] py-3 px-6 rounded-sm cursor-pointer font-semibold hover:bg-[#3730c4] transition-colors'>Sign Up</Link>
+                </div>
+                }
                 </div>
             )}
         </nav>
