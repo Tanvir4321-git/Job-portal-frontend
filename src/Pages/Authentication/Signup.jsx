@@ -5,6 +5,7 @@ import { useForm } from 'react-hook-form';
 import logo from '../../assets/Logo.png';
 import { Authcontext } from '../../Context/AuthContext';
 import { useNavigate } from 'react-router';
+import axios from 'axios';
 
 
 const SignUp = () => {
@@ -17,7 +18,8 @@ const navigate=useNavigate()
         const {email,password}=data
               const res = await registerUser( email, password)
               if(res?.user){
-
+            const {data}=await axios.post('http://localhost:5000/users',data)
+               
                   navigate('/')
               }
     };

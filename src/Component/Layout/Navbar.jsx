@@ -20,15 +20,18 @@ const Navbar = () => {
                 {/* Left Side */}
                 <div className='py-5 gap-12 flex items-center'>
                     {/* Logo */}
+                    <Link to='/'>
                     <div className='flex items-center gap-1'>
                         <img src={logo} alt="logo" className='w-10 h-9' />
                         <h1 style={{ fontFamily: "'Clash Display', sans-serif" }} className='text-[#25324B] font-bold text-2xl leading-9'>QuickHire</h1>
                     </div>
+                    </Link>
 
                     {/* Nav Links  */}
                     <div className='hidden md:flex gap-6'>
-                        <p className='font-medium text-[16px] text-[#515B6F] cursor-pointer hover:text-[#4640DE] transition-colors'>Find Jobs</p>
+                        <a href='#jobs' className='font-medium text-[16px] text-[#515B6F] cursor-pointer hover:text-[#4640DE] transition-colors'>Find Jobs</a>
                         <p className='font-medium text-[16px] text-[#515B6F] cursor-pointer hover:text-[#4640DE] transition-colors'>Browse Companies</p>
+                        <Link to='/admin' className='font-medium text-[16px] text-[#515B6F] cursor-pointer hover:text-[#4640DE] transition-colors'>Admin</Link>
                     </div>
                 </div>
 

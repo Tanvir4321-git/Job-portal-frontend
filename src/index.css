@@ -6,7 +6,9 @@
   font-family:"Clash Display", sans-serif ;
 }
 
-
+html {
+  scroll-behavior: smooth;
+}
 body {
   font-family: "Epilogue", sans-serif;;
 }
