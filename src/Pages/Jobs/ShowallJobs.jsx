@@ -114,7 +114,7 @@ useEffect(() => {
                                             </div>
                                             <div className='mt-5'>
                                                 <Link to={`/job-details/${job?._id}` }className='border border-gray-400 py-2 px-4 mr-3 rounded-sm bg-blue-500 text-white'>Details</Link>
-                                                <Link className='border border-gray-400 py-2 px-4 mr-3 rounded-sm '>Apply</Link>
+                                                <Link to='/apply-form' state={{job}} className='border border-gray-400 py-2 px-4 mr-3 rounded-sm '>Apply</Link>
                                             </div>
                                             
                                             

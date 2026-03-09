@@ -8,17 +8,8 @@ import { toast } from 'react-toastify';
 
 const Admin = () => {
 
-    const {user}=use(Authcontext)
-    // get added job post by admin
-   const {data:jobs, isLoading:loading,refetch}=useQuery({
+    const {user, jobs, jobloading,refetch}=use(Authcontext)
    
-    queryKey:['jobs'],
-    queryFn:async()=>{
-        const res=await axios.get(`http://localhost:5000/jobs`)
-            return res.data
-         
-        } })
-
 
     // form
 
@@ -64,7 +55,7 @@ if(role?.role!=='admin'){
 } 
 
 
-if (loading) {
+if (jobloading) {
   return <Loading></Loading>
 }
 

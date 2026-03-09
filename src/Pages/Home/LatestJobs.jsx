@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { use } from 'react';
 import { FiArrowRight } from 'react-icons/fi';
-import { useQuery } from '@tanstack/react-query';
-import axios from 'axios';
+
 import Loading from '../../Loading';
 import { Link } from 'react-router';
+import { Authcontext } from '../../Context/AuthContext';
 
 
 const tagColorMap = {
@@ -14,15 +14,9 @@ const tagColorMap = {
 };
 
 const LatestJobs = () => {
-    const { data: jobs, isLoading } = useQuery({
-        queryKey: ['jobs'],
-        queryFn: async () => {
-            const res = await axios.get(`http://localhost:5000/jobs`)
-            return res.data
-        }
-    });
+  const { jobs, jobloading}=use(Authcontext)
 
-    if (isLoading) return <Loading />;
+    if (jobloading) return <Loading />;
 
     return (
         <section id='jobs' className='bg-[#F8F8FD] py-16'>
@@ -69,7 +63,7 @@ const LatestJobs = () => {
                                 {/* // button */}
                                 <div className='mt-5'>
                                     <Link to={`/job-details/${job?._id}`} className='border border-gray-400 py-2 px-4 mr-3 rounded-sm bg-blue-500 text-white'>Details</Link>
-                                    <Link className='border border-gray-400 py-2 px-4 mr-3 rounded-sm '>Apply</Link>
+                                     <Link to='/apply-form' state={{job}} className='border border-gray-400 py-2 px-4 mr-3 rounded-sm '>Apply</Link>
                                 </div>
                             </div>
 

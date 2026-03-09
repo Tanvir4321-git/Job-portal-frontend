@@ -3,6 +3,8 @@ import React, { useEffect, useState } from 'react';
 import { createUserWithEmailAndPassword,  onAuthStateChanged, signInWithEmailAndPassword, signOut,   } from 'firebase/auth';
 import { auth } from '../FirebaseConfiq';
 import { Authcontext } from './AuthContext';
+import { useQuery } from '@tanstack/react-query';
+import axios from 'axios';
 
 
 
@@ -49,6 +51,22 @@ useEffect(()=>{
 },[])
 
 
+// all job 
+
+
+   const {data:jobs, isLoading:jobloading,refetch}=useQuery({
+   
+    queryKey:['jobs'],
+    queryFn:async()=>{
+        const res=await axios.get(`http://localhost:5000/jobs`)
+            return res.data
+         
+        } })
+
+
+
+
+
 const authInfo={
 registerUser,
 login,
@@ -56,6 +74,7 @@ login,
  logOut,
  user,setuser,
  loading,setloading,
+ jobs, jobloading,refetch
  
 }
 

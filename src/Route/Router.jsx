@@ -8,6 +8,7 @@ import Admin from '../Pages/Admin';
 import PrivateRoute from '../Component/Layout/PrivateRoute';
 import ShowallJobs from '../Pages/Jobs/ShowallJobs';
 import Jobdetails from '../Pages/Jobs/Jobdetails';
+import ApplyForm from '../Pages/Jobs/ApplyForm';
 
 export const router = createBrowserRouter([
     {
@@ -25,6 +26,10 @@ export const router = createBrowserRouter([
             {
              path:'/job-details/:id',
              Component: Jobdetails
+            },
+            {
+            path:'/apply-form',
+            Component: ApplyForm
             },
             {
                 path:'/admin',
