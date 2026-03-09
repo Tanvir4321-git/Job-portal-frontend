@@ -2,7 +2,7 @@ import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 import React from 'react';
 import Loading from '../../Loading';
-import { useParams } from 'react-router';
+import { Link, useParams } from 'react-router';
 import { FiMapPin, FiClock } from 'react-icons/fi';
 
 const tagColorMap = {
@@ -104,9 +104,7 @@ const Jobdetails = () => {
                                 </div>
                             </div>
 
-                            <button className='w-full bg-[#4640DE] text-white py-3 font-semibold hover:bg-[#3730c4] transition-colors'>
-                                Apply Now
-                            </button>
+                            <Link to='/apply-form' state={{job}} className='border border-gray-400 py-2 px-4 mr-3 rounded-sm '>Apply Now</Link>
                         </div>
                     </div>
 

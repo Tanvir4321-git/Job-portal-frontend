@@ -29,7 +29,9 @@ export const router = createBrowserRouter([
             },
             {
             path:'/apply-form',
-            Component: ApplyForm
+            element: <PrivateRoute>
+                <ApplyForm></ApplyForm>
+            </PrivateRoute>
             },
             {
                 path:'/admin',
