@@ -32,6 +32,7 @@ const Navbar = () => {
                         <a href='#jobs' className='font-medium text-[16px] text-[#515B6F] cursor-pointer hover:text-[#4640DE] transition-colors'>Find Jobs</a>
                         <p className='font-medium text-[16px] text-[#515B6F] cursor-pointer hover:text-[#4640DE] transition-colors'>Browse Companies</p>
                         <Link to='/admin' className='font-medium text-[16px] text-[#515B6F] cursor-pointer hover:text-[#4640DE] transition-colors'>Admin</Link>
+                      
                     </div>
                 </div>
 

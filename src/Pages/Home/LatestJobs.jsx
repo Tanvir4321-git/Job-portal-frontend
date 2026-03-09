@@ -3,10 +3,12 @@ import { FiArrowRight } from 'react-icons/fi';
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 import Loading from '../../Loading';
+import { Link } from 'react-router';
 
 
 const tagColorMap = {
     'Full-Time': 'bg-[#56CDAD1A] text-[#56CDAD] border border-[#26A4FF]',
+    'Part-Time': 'bg-[#56CDAD1A] text-[#56CDAD] border border-[#26A4FF]',
     'Marketing': 'text-[#FFB836] border border-[#FFB836]',
     'Design': 'text-[#4640DE] border border-[#4640DE]',
 };
@@ -20,7 +22,7 @@ const LatestJobs = () => {
         }
     });
 
-    if (isLoading) return <Loading/>;
+    if (isLoading) return <Loading />;
 
     return (
         <section id='jobs' className='bg-[#F8F8FD] py-16'>
@@ -31,9 +33,9 @@ const LatestJobs = () => {
                     <h1 className='font-semibold text-[32px] md:text-5xl title'>
                         Latest <span className='text-[#26A4FF]'>jobs open</span>
                     </h1>
-                    <button className='md:flex hidden items-center gap-2 text-[#4640DE] font-semibold hover:gap-3 transition-all'>
+                    <Link to='/showall-jobs' className='md:flex hidden items-center gap-2 text-[#4640DE] font-semibold hover:gap-3 transition-all cursor-pointer'>
                         Show all jobs <FiArrowRight />
-                    </button>
+                    </Link>
                 </div>
 
                 {/* Grid */}
@@ -64,15 +66,20 @@ const LatestJobs = () => {
                                         </span>
                                     ))}
                                 </div>
+                                {/* // button */}
+                                <div className='mt-5'>
+                                    <Link to={`/job-details/${job?._id}`} className='border border-gray-400 py-2 px-4 mr-3 rounded-sm bg-blue-500 text-white'>Details</Link>
+                                    <Link className='border border-gray-400 py-2 px-4 mr-3 rounded-sm '>Apply</Link>
+                                </div>
                             </div>
 
                         </div>
                     ))}
                 </div>
 
-                <button className='mt-3 flex md:hidden items-center gap-2 text-[#4640DE] font-semibold hover:gap-3 transition-all'>
+                <Link to='/showall-jobs' className='mt-3 flex md:hidden items-center gap-2 text-[#4640DE] font-semibold hover:gap-3 transition-all '>
                     Show all jobs <FiArrowRight />
-                </button>
+                </Link>
             </div>
         </section>
     );

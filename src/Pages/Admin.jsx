@@ -129,6 +129,17 @@ if (loading) {
                     {errors.logo && <p className='text-red-500 text-xs mt-1'>{errors.logo.message}</p>}
                 </div>
 
+                 {/* JOb details*/}
+                <div>
+                    <label className='text-[#25324B] text-sm font-semibold block mb-2'>Details</label>
+                    <textarea
+                       placeholder="Write job details..."
+                         rows={5}
+                        {...register('details', { required: 'Details is required' })}
+                        className='w-full border border-[#D6DDEB] px-4 py-3 text-sm outline-none focus:border-[#4640DE] transition-colors placeholder:text-[#A8ADB7]' /> 
+                    {errors.details && <p className='text-red-500 text-xs mt-1'>{errors.details.message}</p>}
+                </div>
+
                 {/* Tags */}
                 <div>
                     <label className='text-[#25324B] text-sm font-semibold block mb-2'>Job Type & Tags</label>

@@ -6,6 +6,8 @@ import SignUp from '../Pages/Authentication/Signup';
 import Login from '../Pages/Authentication/Login';
 import Admin from '../Pages/Admin';
 import PrivateRoute from '../Component/Layout/PrivateRoute';
+import ShowallJobs from '../Pages/Jobs/ShowallJobs';
+import Jobdetails from '../Pages/Jobs/Jobdetails';
 
 export const router = createBrowserRouter([
     {
@@ -15,6 +17,14 @@ export const router = createBrowserRouter([
             {
                 index:true,
                 Component: Home
+            },
+            {
+            path: '/showall-jobs',
+            Component: ShowallJobs
+            },
+            {
+             path:'/job-details/:id',
+             Component: Jobdetails
             },
             {
                 path:'/admin',
