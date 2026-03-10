@@ -1,3 +1,8 @@
+<p align="center">
+  <img src="jobcover.png" alt="MERN Stack Developer Banner" width="100%">
+</p>
+
+
 Job-Portal - Online Job Application System
 
 📌 Project Purpose
