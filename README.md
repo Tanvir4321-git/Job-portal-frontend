@@ -1,16 +1,99 @@
-# React + Vite
+Job-Portal - Online Job Application System
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+📌 Project Purpose
 
-Currently, two official plugins are available:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+The purpose of this project is to build a web-based job portal where users can easily search and apply for jobs online. The platform allows job seekers to explore available job opportunities, view detailed job information, and apply directly through the website.
 
-## React Compiler
+An admin management system is also included, where the administrator can add new job posts and delete existing jobs to keep the listings updated. Users can efficiently find jobs using search and filter features based on their preferences.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+The system includes a secure authentication process using Firebase, allowing users to register and log in safely. Additionally, users can view detailed information about each job before applying.
 
-## Expanding the ESLint configuration
+The website is designed to be fully responsive, ensuring a smooth and user-friendly experience across different devices such as desktops, tablets, and mobile phones.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+
+🔗 Live Demo
+
+https://sparkly-shortbread-89ad4d.netlify.app/
+
+🛠️ Technologies Used
+
+React.js
+
+Firebase
+
+Tailwind CSS
+
+React Router
+
+React Toastify
+
+Netlify
+
+Framer Motion
+
+MongoDB
+
+TanStack Query
+
+React-hook-form
+
+🚀 Key Features
+
+🔐 User Authentication: Secure login and registration system implemented using Firebase Authentication.
+
+🔎 Job Search & Filter: Users can easily search and filter jobs based on different criteria.
+
+📄 Job Details Page: Users can view detailed information about each job before applying.
+
+📝 Online Job Application: Job seekers can apply for jobs directly through the platform.
+
+🛠 Admin Job Management: Admin can add new job posts and delete existing job listings.
+
+📱 Responsive Design: The website is fully responsive and works smoothly on desktop, tablet, and mobile devices.
+
+⚡ Dynamic Data Loading: Job data is dynamically loaded from the backend for real-time updates.
+
+
+📦 NPM Packages Used
+
+react
+
+react-router-dom
+
+axios
+
+firebase
+
+react-icons
+
+@tanstack/react-query
+
+react-hook-form
+
+tailwindcss
+
+express
+
+mongodb
+
+cors
+
+dotenv
+
+
+▶️ Getting Started
+
+To get started with this project, follow these simple steps:
+
+Install Dependencies Navigate to the project folder and run:
+
+npm install
+
+Setup Environment Variables Create a .env file and add your database and API keys as required.
+
+Start the Development Server Run the following command to launch the website locally:
+
+npm run dev
+
+Contribute Make changes or improvements to the code and push updates if needed.

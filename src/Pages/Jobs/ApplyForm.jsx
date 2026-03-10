@@ -12,7 +12,7 @@ const navigate=useNavigate()
     const { register, handleSubmit, formState: { errors } } = useForm();
 
     const onSubmit = async (data) => {
-        const res = await axios.post('http://localhost:5000/apply-job', {
+        const res = await axios.post('https://job-portal-server-mu-flax.vercel.app/apply-job', {
             ...data,
         
         });

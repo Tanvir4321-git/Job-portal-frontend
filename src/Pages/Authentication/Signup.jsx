@@ -9,19 +9,19 @@ import axios from 'axios';
 
 
 const SignUp = () => {
- const {registerUser}=use(Authcontext)
-const navigate=useNavigate()
+    const { registerUser } = use(Authcontext)
+    const navigate = useNavigate()
 
     const { register, handleSubmit, formState: { errors } } = useForm();
 
-    const onSubmit =async (data) => {
-        const {email,password}=data
-              const res = await registerUser( email, password)
-              if(res?.user){
-            const {data}=await axios.post('http://localhost:5000/users',data)
-               
-                  navigate('/')
-              }
+    const onSubmit = async (data) => {
+        const { email, password } = data
+        const res = await registerUser(email, password)
+        if (res?.user) {
+            const { data } = await axios.post('https://job-portal-server-mu-flax.vercel.app/users', data)
+
+            navigate('/')
+        }
     };
 
     return (

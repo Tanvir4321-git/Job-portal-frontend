@@ -38,7 +38,7 @@ const Navbar = () => {
 
                 {/* Right Side -  */}
                 {
-                    user ?   <button  onClick={()=>logOut()} className='text-white bg-[#4640DE] py-3 px-6 rounded-sm cursor-pointer font-semibold hover:bg-[#3730c4] transition-colors'>Log out</button>:<div className='hidden md:flex gap-4 items-center font-Epilogue'>
+                    user ?   <button  onClick={()=>logOut()} className='text-white bg-[#4640DE] hidden md:flex py-3 px-6 rounded-sm cursor-pointer font-semibold hover:bg-[#3730c4] transition-colors'>Log out</button>:<div className='hidden md:flex gap-4 items-center font-Epilogue'>
                     <Link to='/login' className='text-[#4640DE] py-3 px-6 cursor-pointer font-semibold'>Login</Link>
                     <div className="w-px h-10 bg-[#D6DDEB]"></div>
                     <Link to='/signup' className='text-white bg-[#4640DE] py-3 px-6 rounded-sm cursor-pointer font-semibold hover:bg-[#3730c4] transition-colors'>Sign Up</Link>
@@ -56,19 +56,25 @@ const Navbar = () => {
             </div>
 
             {/* Mobile Menu */}
-            {menuOpen && (
-                <div className='md:hidden bg-[#f8f8fd] px-6 pb-5 flex flex-col gap-4 border-t border-[#D6DDEB]'>
-                    <p className='font-medium text-[16px] text-[#515B6F] pt-4 cursor-pointer'>Find Jobs</p>
-                    <p className='font-medium text-[16px] text-[#515B6F] cursor-pointer'>Browse Companies</p>
-                     {
-                    user ?   <button  onClick={()=>logOut()} className='text-white hidden md:flex bg-[#4640DE] py-3 px-6 rounded-sm cursor-pointer font-semibold hover:bg-[#3730c4] transition-colors'>Log out</button>:<div className='hidden md:flex gap-4 items-center font-Epilogue'>
-                    <Link to='/login' className='text-[#4640DE] py-3 px-6 cursor-pointer font-semibold'>Login</Link>
-                    <div className="w-px h-10 bg-[#D6DDEB]"></div>
-                    <Link to='/signup' className='text-white bg-[#4640DE] py-3 px-6 rounded-sm cursor-pointer font-semibold hover:bg-[#3730c4] transition-colors'>Sign Up</Link>
-                </div>
-                }
-                </div>
-            )}
+           {menuOpen && (
+    <div className='md:hidden bg-[#f8f8fd] px-6 pb-5 flex flex-col gap-4 border-t border-[#D6DDEB]'>
+        <p className='font-medium text-[16px] text-[#515B6F] pt-4 cursor-pointer'>Find Jobs</p>
+        <p className='font-medium text-[16px] text-[#515B6F] cursor-pointer'>Browse Companies</p>
+        <Link to='/admin' className='font-medium text-[16px] text-[#515B6F] cursor-pointer hover:text-[#4640DE] transition-colors'>Admin</Link>
+        
+        {user ? (
+            <button onClick={() => logOut()} className='text-white bg-[#4640DE] py-3 px-6 rounded-sm cursor-pointer font-semibold hover:bg-[#3730c4] transition-colors'>
+                Log out
+            </button>
+        ) : (
+            <div className='flex flex-col gap-3'>
+                <Link to='/login' className='text-[#4640DE] font-semibold'>Login</Link>
+                <Link to='/signup' className='text-white bg-[#4640DE] py-3 px-6 rounded-sm font-semibold text-center'>Sign Up</Link>
+            </div>
+        )}
+    </div>
+)}
+            
         </nav>
     );
 };

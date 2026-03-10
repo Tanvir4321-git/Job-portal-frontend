@@ -24,7 +24,7 @@ const Banner = () => {
     const { data: jobs = [], isLoading } = useQuery({
         queryKey: ['jobs', search],
         queryFn: async () => {
-            const res = await axios.get(`http://localhost:5000/jobs?search=${search}`);
+            const res = await axios.get(`https://job-portal-server-mu-flax.vercel.app/jobs?search=${search}`);
             return res.data;
         }
     });
@@ -94,19 +94,20 @@ const Banner = () => {
                 </div>
 
                 {/* right side */}
-                <div className='w-1/2 hidden md:block'>
-                    {!search ? (
-                        // Original image
-                        <div
-                            style={{ backgroundImage: `url(${bg})` }}
-                            className='bg-cover bg-center bg-no-repeat h-150 -mt-80 flex'
-                        >
-                            <img className='h-162 relative mt-30 ml-25' src={man} alt="" />
-                            <img className='absolute top-[555px] left-[915px]' src={rectangle} alt="" />
-                        </div>
-                    ) : (
-                        // Search Results
-                        <div className='mt-6 max-h-[500px]  overflow-y-auto pr-2  mt-150'>
+                <div className='w-1/2 hidden md:block relative'>
+
+                    
+                    <div
+                        style={{ backgroundImage: `url(${bg})` }}
+                        className='bg-cover bg-center bg-no-repeat h-150 -mt-80 flex'
+                    >
+                        <img className='h-162 relative mt-30 ml-25' src={man} alt="" />
+                        <img className='absolute top-[555px] left-[915px]' src={rectangle} alt="" />
+                    </div>
+
+                    {/* Search Results Overlay */}
+                    {search && (
+                        <div className='absolute top-0 w-full -ml-100 mt-80 max-h-[500px] overflow-y-auto pr-2'>
                             {isLoading ? (
                                 <Loading />
                             ) : jobs.length === 0 ? (
@@ -114,7 +115,7 @@ const Banner = () => {
                             ) : (
                                 <div className='grid grid-cols-1 gap-4'>
                                     {jobs.map((job) => (
-                                        <div key={job._id} className='flex md:flex-row flex-col md:items-center gap-4 bg-white border border-[#D6DDEB] px-4 md:px-6 py-5 hover:shadow-md hover:border-[#4640DE] transition-all cursor-pointer group'>
+                                        <div key={job._id} className='flex md:flex-row flex-col md:items-center gap-4 bg-gray-200 border border-[#D6DDEB] px-4 md:px-6 py-5 hover:shadow-md hover:border-[#4640DE] transition-all cursor-pointer group'>
 
                                             {/* Logo */}
                                             <img
@@ -129,20 +130,41 @@ const Banner = () => {
                                                 <h3 className='text-[#25324B] title font-semibold text-base group-hover:text-[#4640DE] transition-colors'>
                                                     {job.title}
                                                 </h3>
+
                                                 <p className='text-[#515B6F] text-sm mt-0.5'>
-                                                    {job.company} <span className='mx-1 text-[#D6DDEB]'>•</span> {job.location}
+                                                    {job.company}
+                                                    <span className='mx-1 text-[#D6DDEB]'>•</span>
+                                                    {job.location}
                                                 </p>
+
                                                 <div className='flex gap-2 flex-wrap mt-3'>
                                                     {job.tags?.map((tag) => (
-                                                        <span key={tag} className={`text-xs font-medium px-3 py-1 rounded-full ${tagColorMap[tag.trim()]}`}>
+                                                        <span
+                                                            key={tag}
+                                                            className={`text-xs font-medium px-3 py-1 rounded-full ${tagColorMap[tag.trim()]}`}
+                                                        >
                                                             {tag}
                                                         </span>
                                                     ))}
                                                 </div>
+
                                                 <div className='mt-5'>
-                                                    <Link to={`/job-details/${job?._id}`} className='border border-gray-400 py-2 px-4 mr-3 rounded-sm bg-blue-500 text-white'>Details</Link>
-                                                    <Link to='/apply-form' state={{ job }} className='border border-gray-400 py-2 px-4 mr-3 rounded-sm'>Apply</Link>
+                                                    <Link
+                                                        to={`/job-details/${job?._id}`}
+                                                        className='border border-gray-400 py-2 px-4 mr-3 rounded-sm bg-blue-500 text-white'
+                                                    >
+                                                        Details
+                                                    </Link>
+
+                                                    <Link
+                                                        to='/apply-form'
+                                                        state={{ job }}
+                                                        className='border border-gray-400 py-2 px-4 mr-3 rounded-sm'
+                                                    >
+                                                        Apply
+                                                    </Link>
                                                 </div>
+
                                             </div>
 
                                         </div>
@@ -151,6 +173,7 @@ const Banner = () => {
                             )}
                         </div>
                     )}
+
                 </div>
 
             </div>

@@ -21,7 +21,7 @@ const Jobdetails = () => {
     const { data: job, isLoading } = useQuery({
         queryKey: ['job-details', id],
         queryFn: async () => {
-            const res = await axios.get(`http://localhost:5000/job-details/${id}`)
+            const res = await axios.get(`https://job-portal-server-mu-flax.vercel.app/job-details/${id}`)
             return res.data
         }
     });
@@ -104,7 +104,7 @@ const Jobdetails = () => {
                                 </div>
                             </div>
 
-                            <Link to='/apply-form' state={{job}} className='border border-gray-400 py-2 px-4 mr-3 rounded-sm '>Apply Now</Link>
+                            <Link to='/apply-form' state={{ job }} className='border border-gray-400 py-2 px-4 mr-3 rounded-sm '>Apply Now</Link>
                         </div>
                     </div>
 

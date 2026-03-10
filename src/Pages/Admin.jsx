@@ -8,56 +8,57 @@ import { toast } from 'react-toastify';
 
 const Admin = () => {
 
-    const {user, jobs, jobloading,refetch}=use(Authcontext)
-   
+    const { user, jobs, jobloading, refetch } = use(Authcontext)
+
 
     // form
 
- const { register, handleSubmit, formState: { errors }, reset, } = useForm();
+    const { register, handleSubmit, formState: { errors }, reset, } = useForm();
 
-    const onSubmit =async (data) => {
-      const res=  await axios.post ('http://localhost:5000/post-job',data)
-      toast('Successfully Added  Job')
-      refetch()
+    const onSubmit = async (data) => {
+        const res = await axios.post('https://job-portal-server-mu-flax.vercel.app/post-job', data)
+        toast('Successfully Added  Job')
+        refetch()
         reset();
     };
 
 
 
-// job delete by admin
+    // job delete by admin
 
 
-const handledelete=async(id)=>{
+    const handledelete = async (id) => {
 
-    const result = await axios.delete(`http://localhost:5000/job-delete/${id}`)
-    refetch()
-    toast(' Successfuly Deleted Job')
-}
+        const result = await axios.delete(`https://job-portal-server-mu-flax.vercel.app/job-delete/${id}`)
+        refetch()
+        toast(' Successfuly Deleted Job')
+    }
 
 
-// user role
+    // user role
 
- const {data:role, isLoading}=useQuery({
-   enabled: !!user?.email,
-    queryKey:['user-role',user?.email],
-    queryFn:async()=>{
-        const res=await axios.get(`http://localhost:5000/users/${user?.email}/role`)
+    const { data: role, isLoading } = useQuery({
+        enabled: !!user?.email,
+        queryKey: ['user-role', user?.email],
+        queryFn: async () => {
+            const res = await axios.get(`https://job-portal-server-mu-flax.vercel.app/users/${user?.email}/role`)
             return res.data
 
-        } })
+        }
+    })
 
-      if (!user||isLoading) {
-  return <Loading></Loading>;
-}
-    
-if(role?.role!=='admin'){
-    return <h1 className='text-2xl font-semibold text-center'>You are not a Admin</h1>
-} 
+    if (!user || isLoading) {
+        return <Loading></Loading>;
+    }
+
+    if (role?.role !== 'admin') {
+        return <h1 className='text-2xl font-semibold text-center'>You are not a Admin</h1>
+    }
 
 
-if (jobloading) {
-  return <Loading></Loading>
-}
+    if (jobloading) {
+        return <Loading></Loading>
+    }
 
 
 
@@ -66,7 +67,7 @@ if (jobloading) {
     return (
         <div className='bg-white  max-w-360 mx-auto px-4 md:px-31 '>
 
-            <h2  className='text-[#25324B] mt-10 text-center title font-semibold text-2xl mb-6'>
+            <h2 className='text-[#25324B] mt-10 text-center title font-semibold text-2xl mb-6'>
                 Post a New Job
             </h2>
 
@@ -120,14 +121,14 @@ if (jobloading) {
                     {errors.logo && <p className='text-red-500 text-xs mt-1'>{errors.logo.message}</p>}
                 </div>
 
-                 {/* JOb details*/}
+                {/* JOb details*/}
                 <div>
                     <label className='text-[#25324B] text-sm font-semibold block mb-2'>Details</label>
                     <textarea
-                       placeholder="Write job details..."
-                         rows={5}
+                        placeholder="Write job details..."
+                        rows={5}
                         {...register('details', { required: 'Details is required' })}
-                        className='w-full border border-[#D6DDEB] px-4 py-3 text-sm outline-none focus:border-[#4640DE] transition-colors placeholder:text-[#A8ADB7]' /> 
+                        className='w-full border border-[#D6DDEB] px-4 py-3 text-sm outline-none focus:border-[#4640DE] transition-colors placeholder:text-[#A8ADB7]' />
                     {errors.details && <p className='text-red-500 text-xs mt-1'>{errors.details.message}</p>}
                 </div>
 
@@ -171,38 +172,38 @@ if (jobloading) {
 
             {/* Job Table */}
 
-<div className='my-10'>
-    <h2  className='text-[#25324B] text-center title font-semibold text-2xl mb-4'>
-        Posted Jobs
-    </h2>
-    <table className='w-full border border-[#D6DDEB] text-sm'>
-        <thead className='bg-[#F8F8FD]'>
-            <tr>
-                <th className='text-left px-4 py-3 text-[#25324B] font-semibold border-b border-[#D6DDEB]'>#</th>
-                <th className='text-left px-4 py-3 text-[#25324B] font-semibold border-b border-[#D6DDEB]'>Job Title</th>
-                <th className='text-left px-4 py-3 text-[#25324B] font-semibold border-b border-[#D6DDEB]'>Company</th>
-                <th className='text-left px-4 py-3 text-[#25324B] font-semibold border-b border-[#D6DDEB]'>Action</th>
-            </tr>
-        </thead>
-        <tbody>
-            {jobs?.map((job, index) => (
-                <tr key={job._id} className='border-b border-[#D6DDEB] hover:bg-[#F8F8FD] transition-colors'>
-                    <td className='px-4 py-3 text-[#515B6F]'>{index + 1}</td>
-                    <td className='px-4 py-3 text-[#25324B] font-medium'>{job.title}</td>
-                    <td className='px-4 py-3 text-[#515B6F]'>{job.company}</td>
-                    <td className='px-4 py-3'>
-                        <button
-                            onClick={() => handledelete( job._id)}
-                            className='text-red-500 border border-red-400 px-3 py-1 text-xs font-semibold hover:bg-red-500 hover:text-white transition-colors'
-                        >
-                            Delete
-                        </button>
-                    </td>
-                </tr>
-            ))}
-        </tbody>
-    </table>
-</div>
+            <div className='my-10'>
+                <h2 className='text-[#25324B] text-center title font-semibold text-2xl mb-4'>
+                    Posted Jobs
+                </h2>
+                <table className='w-full border border-[#D6DDEB] text-sm'>
+                    <thead className='bg-[#F8F8FD]'>
+                        <tr>
+                            <th className='text-left px-4 py-3 text-[#25324B] font-semibold border-b border-[#D6DDEB]'>#</th>
+                            <th className='text-left px-4 py-3 text-[#25324B] font-semibold border-b border-[#D6DDEB]'>Job Title</th>
+                            <th className='text-left px-4 py-3 text-[#25324B] font-semibold border-b border-[#D6DDEB]'>Company</th>
+                            <th className='text-left px-4 py-3 text-[#25324B] font-semibold border-b border-[#D6DDEB]'>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {jobs?.map((job, index) => (
+                            <tr key={job._id} className='border-b border-[#D6DDEB] hover:bg-[#F8F8FD] transition-colors'>
+                                <td className='px-4 py-3 text-[#515B6F]'>{index + 1}</td>
+                                <td className='px-4 py-3 text-[#25324B] font-medium'>{job.title}</td>
+                                <td className='px-4 py-3 text-[#515B6F]'>{job.company}</td>
+                                <td className='px-4 py-3'>
+                                    <button
+                                        onClick={() => handledelete(job._id)}
+                                        className='text-red-500 border border-red-400 px-3 py-1 text-xs font-semibold hover:bg-red-500 hover:text-white transition-colors'
+                                    >
+                                        Delete
+                                    </button>
+                                </td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
         </div>
     );
 };
