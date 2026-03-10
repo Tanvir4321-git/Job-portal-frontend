@@ -38,7 +38,7 @@ const Banner = () => {
             <div className='max-w-360 mx-auto px-4 md:px-31 flex items-center gap-2 pt-6 md:pt-20'>
 
                 {/* left div */}
-                <div className='md:w-1/2 w-full mb-25 md:mb-36'>
+                <div className='md:w-1/2 w-full mb-25 md:mb-36 relative'>
 
                     <h1 className='font-semibold text-5xl md:text-7xl title leading-[110%]'>
                         Discover <br /> more than <br />
@@ -89,14 +89,60 @@ const Banner = () => {
                             Search my job
                         </button>
 
+                        {/* ✅ Search Results  */}
+                        {search && (
+                            <div className='absolute top-full left-0 w-full md:w-1/2 max-h-[500px] overflow-y-auto z-[999] bg-white shadow-2xl border border-[#D6DDEB] rounded-b-sm mt-1'>
+                                {isLoading ? (
+                                    <Loading />
+                                ) : jobs.length === 0 ? (
+                                    <p className='text-[#515B6F] text-sm text-center py-10'>No jobs found.</p>
+                                ) : (
+                                    <div className='grid grid-cols-1 divide-y divide-[#D6DDEB]'>
+                                        {jobs.map((job) => (
+                                            <div key={job._id} className='flex md:flex-row flex-col md:items-center gap-4 px-4 md:px-6 py-5 hover:bg-[#f8f8fd] transition-all cursor-pointer group'>
+
+                                                {/* Logo */}
+                                                <img
+                                                    src={job.logo}
+                                                    alt={job.company}
+                                                    className='w-12 h-12 rounded object-contain border border-[#D6DDEB] p-1 shrink-0'
+                                                    onError={(e) => { e.target.src = `https://ui-avatars.com/api/?name=${job.company}&background=4640DE&color=fff&size=48` }}
+                                                />
+
+                                                {/* Info */}
+                                                <div>
+                                                    <h3 className='text-[#25324B] title font-semibold text-base group-hover:text-[#4640DE] transition-colors'>
+                                                        {job.title}
+                                                    </h3>
+                                                    <p className='text-[#515B6F] text-sm mt-0.5'>
+                                                        {job.company} <span className='mx-1 text-[#D6DDEB]'>•</span> {job.location}
+                                                    </p>
+                                                    <div className='flex gap-2 flex-wrap mt-3'>
+                                                        {job.tags?.map((tag) => (
+                                                            <span key={tag} className={`text-xs font-medium px-3 py-1 rounded-full ${tagColorMap[tag.trim()]}`}>
+                                                                {tag}
+                                                            </span>
+                                                        ))}
+                                                    </div>
+                                                    <div className='mt-5'>
+                                                        <Link to={`/job-details/${job?._id}`} className='border border-gray-400 py-2 px-4 mr-3 rounded-sm bg-blue-500 text-white'>Details</Link>
+                                                        <Link to='/apply-form' state={{ job }} className='border border-gray-400 py-2 px-4 mr-3 rounded-sm'>Apply</Link>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        ))}
+                                    </div>
+                                )}
+                            </div>
+                        )}
+
                     </div>
 
                 </div>
 
-                {/* right side */}
-                <div className='w-1/2 hidden md:block relative'>
-
-                    
+                {/*  */}
+                <div className='w-1/2 hidden md:block'>
                     <div
                         style={{ backgroundImage: `url(${bg})` }}
                         className='bg-cover bg-center bg-no-repeat h-150 -mt-80 flex'
@@ -104,76 +150,6 @@ const Banner = () => {
                         <img className='h-162 relative mt-30 ml-25' src={man} alt="" />
                         <img className='absolute top-[555px] left-[915px]' src={rectangle} alt="" />
                     </div>
-
-                    {/* Search Results Overlay */}
-                    {search && (
-                        <div className='absolute top-0 w-full -ml-100 mt-80 max-h-[500px] overflow-y-auto pr-2'>
-                            {isLoading ? (
-                                <Loading />
-                            ) : jobs.length === 0 ? (
-                                <p className='text-[#515B6F] text-sm text-center py-10'>No jobs found.</p>
-                            ) : (
-                                <div className='grid grid-cols-1 gap-4'>
-                                    {jobs.map((job) => (
-                                        <div key={job._id} className='flex md:flex-row flex-col md:items-center gap-4 bg-gray-200 border border-[#D6DDEB] px-4 md:px-6 py-5 hover:shadow-md hover:border-[#4640DE] transition-all cursor-pointer group'>
-
-                                            {/* Logo */}
-                                            <img
-                                                src={job.logo}
-                                                alt={job.company}
-                                                className='w-12 h-12 rounded object-contain border border-[#D6DDEB] p-1 shrink-0'
-                                                onError={(e) => { e.target.src = `https://ui-avatars.com/api/?name=${job.company}&background=4640DE&color=fff&size=48` }}
-                                            />
-
-                                            {/* Info */}
-                                            <div>
-                                                <h3 className='text-[#25324B] title font-semibold text-base group-hover:text-[#4640DE] transition-colors'>
-                                                    {job.title}
-                                                </h3>
-
-                                                <p className='text-[#515B6F] text-sm mt-0.5'>
-                                                    {job.company}
-                                                    <span className='mx-1 text-[#D6DDEB]'>•</span>
-                                                    {job.location}
-                                                </p>
-
-                                                <div className='flex gap-2 flex-wrap mt-3'>
-                                                    {job.tags?.map((tag) => (
-                                                        <span
-                                                            key={tag}
-                                                            className={`text-xs font-medium px-3 py-1 rounded-full ${tagColorMap[tag.trim()]}`}
-                                                        >
-                                                            {tag}
-                                                        </span>
-                                                    ))}
-                                                </div>
-
-                                                <div className='mt-5'>
-                                                    <Link
-                                                        to={`/job-details/${job?._id}`}
-                                                        className='border border-gray-400 py-2 px-4 mr-3 rounded-sm bg-blue-500 text-white'
-                                                    >
-                                                        Details
-                                                    </Link>
-
-                                                    <Link
-                                                        to='/apply-form'
-                                                        state={{ job }}
-                                                        className='border border-gray-400 py-2 px-4 mr-3 rounded-sm'
-                                                    >
-                                                        Apply
-                                                    </Link>
-                                                </div>
-
-                                            </div>
-
-                                        </div>
-                                    ))}
-                                </div>
-                            )}
-                        </div>
-                    )}
-
                 </div>
 
             </div>
